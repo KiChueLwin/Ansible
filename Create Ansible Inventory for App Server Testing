@@ -1,0 +1,6 @@
+[app_servers]
+stapp01 ansible_user=tony ansible_password='Ir0nM@n' ansible_host=ipaddress ansible_connection=ssh ansible_port=22
+
+ansible all -m ping -i inventory ( m = modules / i = inventory ) 
+
+ansible-playbook -i inventory playbook.yml 
