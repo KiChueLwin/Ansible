@@ -1,0 +1,21 @@
+
+-------------------------------------
+Inventory 
+
+stapp01 ansible_user=tony ansible_password='Ir0nM@n' ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+
+ansible all -i inventory -m ping
+
+------------------------------------------------------------------------------------
+
+Playbok 
+
+- name: Create an empty file
+  hosts: stapp01
+  tasks:
+  - name: Create file /tmp/file.txt using file module
+    file:
+      path: /tmp/file.txt
+      state: touch
+
+ansible-playbook -i inventory playbook.yml
