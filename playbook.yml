@@ -1,0 +1,27 @@
+---
+- name: Copy Data
+  hosts: all
+  become: true
+  tasks:
+    - name: Copy Data to app server
+      copy:
+        src: /usr/src/dba/index.html
+        dest: /opt/dba/
+        remote_src: false
+
+# become: true is for permission which can access read write as admin
+# copy: It is copy module for copying data
+# src means source that is the original place where the file existed
+# dest is destination where to paste the data
+
+To run playbook 
+ansible-playbook -i inventory playbook.yml
+
+-----------------------------------
+
+This is inventory 
+
+app_servers]
+stapp01 ansible_user=tony ansible_password='Ir0nM@n'
+stapp02 ansible_user=steve ansible_password='Am3ric@'
+stapp03 ansible_user=banner ansible_password='BigGr33n'
