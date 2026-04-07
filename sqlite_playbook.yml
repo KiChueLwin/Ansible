@@ -1,0 +1,24 @@
+---
+- name: Install sqlite package on all  app servers 
+  hosts: app_servers
+  become: true
+  tasks:
+    - name: install sqlite package 
+      yum: 
+        name: sqlite
+        state: present
+
+ansible-playbook -i inventory playbook.yml   ( run cmd ) 
+
+-------------------------------------------------------
+
+inventory 
+
+[app_servers]
+stapp01 ansible_user=tony ansible_password=Ir0nM@n
+stapp02 ansible_user=steve ansible_password=Am3ric@
+stapp03 ansible_user=banner ansible_password=BigGr33n
+
+ansible all -i inventory -m ping  ( run cmd ) 
+-----------------------------------------------------------
+
