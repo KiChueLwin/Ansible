@@ -1,0 +1,29 @@
+---
+- name: Install httpd service and craete index.html
+  hosts: all
+  become: yes
+  tasks:
+    - name: Install httpd service
+      yum:
+        name: httpd
+        state: present
+    - name: Start and enable httpd service
+      systemd:
+        name: httpd
+        state: started
+        enabled: yes  
+    - name: Create index.html file 
+      copy:
+        dest: /var/www/html/index.html
+        content: This is a Nautilus sample file, created using Ansible!
+        owner: apache
+        group: apache
+        mode: '0744'
+    - name: Add new line at the end of index.html file
+      lineinfile:
+        path: /var/www/html/index.html
+        line: Welcome to xFusionCorp Industries!
+        insertbefore: BOF 
+        owner: apache
+        group: apache
+        mode: '0744'
