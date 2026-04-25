@@ -1,0 +1,30 @@
+---
+- hosts: all
+  become: yes
+  tasks: 
+    - name: Copy blog.txt to app server 1
+      copy:
+        src: /usr/src/data/blog.txt
+        dest: /opt/data/blog.txt
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
+        mode: '0777'
+      when: ansible_nodename == 'stapp01'
+
+    - name: Copy story.txt to app server 2
+      copy:
+        src: /usr/src/data/story.txt
+        dest: /opt/data/story.txt
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
+        mode: '0777'
+      when: ansible_nodename == 'stapp02'
+
+    - name: Copy media.txt to app server 3
+      copy:
+        src: /usr/src/data/media.txt
+        dest: /opt/data/media.txt
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
+        mode: '0777'
+      when: ansible_nodename == 'stapp03'
